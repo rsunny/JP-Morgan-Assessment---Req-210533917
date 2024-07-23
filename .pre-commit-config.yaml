@@ -1,18 +1,9 @@
-# .pre-commit-config.yaml
-
 repos:
   - repo: https://github.com/pre-commit/mirrors-isort
     rev: v5.10.1  # Use the latest version
     hooks:
       - id: isort
         args: ["--profile", "black"]
-
-  - repo: https://github.com/myint/autoflake
-    rev: v1.4  # Use the latest version
-    hooks:
-      - id: autoflake
-        args: ["--remove-all-unused-imports", "--remove-unused-variables", "--in-place"]
-        additional_dependencies: ["autoflake==1.4"]
 
   - repo: https://github.com/psf/black
     rev: 23.3.0  # Use the latest version
