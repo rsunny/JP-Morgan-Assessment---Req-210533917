@@ -1,7 +1,7 @@
 from math import prod
 
-from src.stock import Stock
 from src.data.stocks import stocks_data
+from src.stock import Stock
 
 
 class GBCE:
@@ -23,7 +23,7 @@ class GBCE:
         if symbol in self.__stocks:
             raise ValueError(f"Stock with symbol {symbol} already exists")
         self.__stocks[symbol] = stock
-    
+
     def load_stocks(self):
         """
         Load stocks from the stocks_data list.
