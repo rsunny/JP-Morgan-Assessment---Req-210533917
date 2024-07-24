@@ -19,6 +19,21 @@ def test_add_stock(gbce, stock_gin):
     assert gbce.get_stock("GIN") == stock_gin
 
 
+def test_add_stock_duplicate_fails(gbce, stock_gin):
+    gbce.add_stock(stock_gin)
+    try:
+        gbce.add_stock(stock_gin)
+        assert False
+    except ValueError:
+        assert True
+
+
+def test_load_stocks():
+    gbce = GBCE()
+    gbce.load_stocks()
+    assert gbce.get_all_stocks().keys() == {"TEA", "POP", "ALE", "GIN", "JOE"}
+
+
 def test_gbce_all_share_index(gbce, stock_tea, stock_pop):
     stock_tea.record_trade(
         int(datetime.now().timestamp()), 100, IndicatorConst.BUY, 105

@@ -7,12 +7,28 @@ def test_dividend_yield_common(stock_tea):
     assert stock_tea.dividend_yield(100) == 0
 
 
+def test_dividend_yield_common_zero_price(stock_tea):
+    assert stock_tea.dividend_yield(0) == 0
+
+
 def test_dividend_yield_preferred(stock_gin):
     assert stock_gin.dividend_yield(100) == 0.02
 
 
+def test_dividend_yield_preferred_zero_price(stock_gin):
+    assert stock_gin.dividend_yield(0) == 0
+
+
 def test_pe_ratio(stock_pop):
     assert stock_pop.pe_ratio(100) == 12.5
+
+
+def test_pe_ratio_zero_price(stock_pop):
+    assert stock_pop.pe_ratio(0) == 0
+
+
+def test_pe_ratio_zero_dividend(stock_tea):
+    assert stock_tea.pe_ratio(100) == 0
 
 
 def test_record_trade(stock_pop):

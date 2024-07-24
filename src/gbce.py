@@ -1,6 +1,7 @@
 from math import prod
 
 from src.stock import Stock
+from src.data.stocks import stocks_data
 
 
 class GBCE:
@@ -19,7 +20,24 @@ class GBCE:
         - stock (Stock): The stock to be added.
         """
         symbol = stock.get_symbol()
+        if symbol in self.__stocks:
+            raise ValueError(f"Stock with symbol {symbol} already exists")
         self.__stocks[symbol] = stock
+    
+    def load_stocks(self):
+        """
+        Load stocks from the stocks_data list.
+        """
+        for stock_data in stocks_data:
+            stock = Stock(
+                symbol=stock_data["symbol"],
+                stock_type=stock_data["type"],
+                last_dividend=stock_data["last_dividend"],
+                fixed_dividend=stock_data["fixed_dividend"],
+                par_value=stock_data["par_value"],
+            )
+            if stock.get_symbol() not in self.__stocks:
+                self.add_stock(stock)
 
     def get_stock(self, symbol: str) -> Stock:
         """
@@ -37,6 +55,15 @@ class GBCE:
         if symbol not in self.__stocks:
             raise KeyError(f"Stock with symbol {symbol} not found")
         return self.__stocks[symbol]
+
+    def get_all_stocks(self) -> dict[str, Stock]:
+        """
+        Retrieve all stocks.
+
+        Returns:
+        - dict[str, Stock]: A dictionary containing all stocks, with the symbol as the key.
+        """
+        return self.__stocks
 
     def gbce_all_share_index(self) -> float:
         """

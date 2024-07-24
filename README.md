@@ -68,4 +68,5 @@ make docker-run # executes the docker image and runs the tests
 
 ## Usage:
 
-There is no main.py or a driver file to create objects and load data into memory. However, a comprehensive set of test fixtures and scenarios are included to test the classes, features, and data loading functionality.
+- There is no main.py or a driver file to create objects and load data into memory. However, a comprehensive set of test fixtures and scenarios are included to test the classes, features, and data loading functionality.
+- GBCE have load_stocks, when called load all the stocks from the data/stocks.
